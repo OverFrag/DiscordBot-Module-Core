@@ -7,10 +7,9 @@ class Core(Module):
     name = 'core'
     uptime = None
     msg = []
+    init = datetime.datetime.now()
 
     def bot(self):
-        self.config['init'] = datetime.datetime.now()
-
         if 'core' in self.container.config['global']:
             self.config = self.container.config['global']['core']
 
@@ -41,7 +40,7 @@ class Core(Module):
             else:
                 return 's'
 
-        diff = datetime.datetime.now() - self.config['init']
+        diff = datetime.datetime.now() - self.init
 
         hours = (diff.seconds // 3600) % 24
         minutes = (diff.seconds // 60) % 60
